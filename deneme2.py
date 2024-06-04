@@ -1,11 +1,12 @@
 from ultralytics import YOLO
 import cv2
+import numpy as np
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 kamera = cv2.VideoCapture(1)
 confidence = 0.25
 
-model = YOLO("C:/Users/Eren/Desktop/BUSON/2haziran.pt")
+model = YOLO("4haziran.pt")
 labels = ['drusen', 'normal']
 
 while True:
