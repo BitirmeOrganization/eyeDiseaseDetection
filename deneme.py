@@ -5,15 +5,14 @@ import cv2
 import cvzone  # Opencv'yi daha kullanışlı hale getirmesi için kullanılır. Nesne takibi ve tanıma için kullanılır
 from ultralytics import YOLO  # nesne algılama modelini içerir. Bunu YOLO kütüphanesine aktarır.
 
-confidence = 0.3  # Doğruluk oranının kaç olmasını belirleriz.
+confidence = 0.05  # Doğruluk oranının kaç olmasını belirleriz.
 
 cap = cv2.VideoCapture(1)  # 0 Pc kamera, 1 harici kamera
 cap.set(3, 1280)
 cap.set(4, 720)
 # cap = cv2.VideoCapture("../Videos/motorbikes.mp4")  # For Video
 
-model = YOLO("C:\\Users\\Eren\\Desktop\\SE\\bitirme\\best.pt")
-model = YOLO("C:\\Users\\Eren\\Desktop\\SE\\bitirme\\last.pt")
+model = YOLO("C:/Users/Eren/Desktop/SE/eyeDiseaseDetection/best.pt")
 
 classNames = ['healthy', 'glaucoma']  # Algılanacak sınıflar
 
