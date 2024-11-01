@@ -10,6 +10,8 @@ from PIL import Image
 from customtkinter import CTkImage, CTkToplevel
 
 windll.shcore.SetProcessDpiAwareness(1)
+custom_font = ("Helvetica", 14, "bold")
+
 
 class MainInterface:
     def __init__(self, root):
@@ -17,20 +19,22 @@ class MainInterface:
 
         # Properties of interface
         self.root.title("Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti")
-        self.root.geometry("600x800")
+        self.root.geometry("600x700")
 
-        self.authorText = ctk.CTkLabel(self.root,
-                                       text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti\n\nDr. Öğr. Üyesi Burak Yılmaz\nMehmet Ali Güven - 211229014\nEren Güner - 211229049")
-        self.authorText.pack(padx=10, pady=10)
+        self.titleText = ctk.CTkLabel(self.root,
+                                      text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti", font=("Helvetica", 24, "bold"))
+        self.titleText.pack(padx=10, pady=10)
+        self.authorText = ctk.CTkLabel(self.root, text="Dr. Öğr. Üyesi Burak Yılmaz\nMehmet Ali Güven - 211229014\nEren Güner - 211229049", font=custom_font)
+        self.authorText.pack()
 
-        self.imgLabel = ctk.CTkLabel(root, text="")
+        self.imgLabel = ctk.CTkLabel(root, text=None)
         self.imgLabel.pack()
 
-        self.uploadImageBtn = ctk.CTkButton(root, text="Görsel Yükle", command=self.upload_image)
-        self.uploadImageBtn.pack(padx=10, pady=20)
+        self.uploadImageBtn = ctk.CTkButton(root, text="Görsel Yükle", command=self.upload_image, font=custom_font)
+        self.uploadImageBtn.pack(padx=10, pady=10)
 
-        self.detecBtn = ctk.CTkButton(root, text="Hastalık Tespiti Yap", command=self.detect_disease)
-        self.detecBtn.pack(padx=10, pady=20)
+        self.detecBtn = ctk.CTkButton(root, text="Hastalık Tespiti Yap", command=self.detect_disease, font=custom_font)
+        self.detecBtn.pack(padx=10)
 
         self.image = None
         self.warning_label = None
@@ -75,22 +79,24 @@ class MainInterface:
                 cv2.putText(srcRGB, text, (x1, y1 - 10), font, 1.2, (255, 0, 255), 2)
 
             self.result = Image.fromarray(srcRGB)
-            img_tk = CTkImage(self.result, size=(500, 500))  # Sonuç görüntüsünü ölçekleyerek CTkImage oluşturun
+            img_tk = CTkImage(self.result, size=(500, 500))
 
             new_window = CTkToplevel(self.root)
             new_window.title("Sonuç")
+            new_window.lift()
 
-            label = ctk.CTkLabel(new_window, image=img_tk, text="")
-            label.image = img_tk  # Görüntü referansını saklayın
+            label = ctk.CTkLabel(new_window, image=img_tk, text=None)
+            label.image = img_tk
             label.pack()
 
         else:
-            if not self.warning_label:  # warning_label daha önce oluşturulmadıysa
+            if not self.warning_label:
                 self.warning_label = ctk.CTkLabel(self.root, text="Hastalık tespiti yapabilmek için görsel yükleyin!",
-                                                  fg_color="red")
+                                                  text_color="red", font=custom_font, )
                 self.warning_label.pack(pady=10)
 
 
+ctk.set_appearance_mode("dark")
 root = ctk.CTk()
 MainInterface(root)
 root.mainloop()
