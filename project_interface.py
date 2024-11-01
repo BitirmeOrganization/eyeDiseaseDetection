@@ -19,7 +19,7 @@ class MainInterface:
 
         self.authorFont = tk.font.Font(root, family="Helvetica", size=12, weight="bold")
         self.authorText = tk.Label(self.root,
-                                   text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti\nDr. Öğr. Üyesi Burak Yılmaz\nMehmet Ali Güven - 211229014\nEren GÜNER - 211229049",
+                                   text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti\n\nDr. Öğr. Üyesi Burak Yılmaz\nMehmet Ali Güven - 211229014\nEren Güner - 211229049",
                                    font=self.authorFont)
         self.authorText.pack(padx=10, pady=10)
 
@@ -33,12 +33,17 @@ class MainInterface:
         self.detecBtn.pack(padx=10, pady=20)
 
         self.image = None
+        self.warning_label = None
 
     def upload_image(self):
         file_path = filedialog.askopenfilename(filetypes=[("Resim Dosyalari", "*.png;*.jpg;*.jpeg")])
         if file_path:
             self.image = Image.open(file_path)
             self.display_image()
+
+            if self.warning_label:
+                self.warning_label.destroy()
+                self.warning_label = None
 
     def display_image(self):
         if self.image is not None:
@@ -70,7 +75,6 @@ class MainInterface:
                 text = name + ' ' + str(format(score, '.2f'))
                 cv2.putText(srcRGB, text, (x1, y1 - 10), font, 1.2, (255, 0, 255), 2)
 
-            # Görüntü işleme işlemleri tamamlandıktan sonra sonucu göster
             self.result = Image.fromarray(srcRGB)
             img_tk = ImageTk.PhotoImage(self.result)
 
@@ -80,6 +84,12 @@ class MainInterface:
             label = tk.Label(new_window, image=img_tk)
             label.image = img_tk  # Görüntü referansını sakla
             label.pack()
+
+        else:
+            if not self.warning_label:  # warning_label daha önce oluşturulmadıysa
+                self.warning_label = tk.Label(self.root, text="Hastalık tespiti yapabilmek için görsel yükleyin!",
+                                              fg="red")
+                self.warning_label.pack(pady=10)
 
 
 root = tk.Tk()
