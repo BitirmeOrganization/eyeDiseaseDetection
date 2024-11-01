@@ -2,7 +2,7 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 import tkinter as tk
-from tkinter import filedialog, messagebox, font
+from tkinter import filedialog, font, Toplevel
 from ctypes import windll
 from PIL import Image, ImageTk
 
@@ -70,11 +70,16 @@ class MainInterface:
                 text = name + ' ' + str(format(score, '.2f'))
                 cv2.putText(srcRGB, text, (x1, y1 - 10), font, 1.2, (255, 0, 255), 2)
 
-                self.result = Image.fromarray(srcRGB)
-                img_tk = ImageTk.PhotoImage(self.result)
+            # Görüntü işleme işlemleri tamamlandıktan sonra sonucu göster
+            self.result = Image.fromarray(srcRGB)
+            img_tk = ImageTk.PhotoImage(self.result)
 
-                self.imgLabel.config(image=img_tk)
-                self.imgLabel.image = img_tk
+            new_window = Toplevel(self.root)
+            new_window.title("Sonuç")
+
+            label = tk.Label(new_window, image=img_tk)
+            label.image = img_tk  # Görüntü referansını sakla
+            label.pack()
 
 
 root = tk.Tk()
