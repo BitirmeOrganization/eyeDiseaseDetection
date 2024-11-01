@@ -7,7 +7,7 @@ import numpy as np
 from tkinter import filedialog, font, Toplevel
 from ctypes import windll
 from PIL import Image
-from customtkinter import CTkImage
+from customtkinter import CTkImage, CTkToplevel
 
 windll.shcore.SetProcessDpiAwareness(1)
 
@@ -77,7 +77,7 @@ class MainInterface:
             self.result = Image.fromarray(srcRGB)
             img_tk = CTkImage(self.result, size=(500, 500))  # Sonuç görüntüsünü ölçekleyerek CTkImage oluşturun
 
-            new_window = Toplevel(self.root)
+            new_window = CTkToplevel(self.root)
             new_window.title("Sonuç")
 
             label = ctk.CTkLabel(new_window, image=img_tk, text="")
