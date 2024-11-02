@@ -55,7 +55,7 @@ class MainInterface:
         if self.image is not None:
             font = cv2.FONT_HERSHEY_SIMPLEX
             confidence = 0.4
-            model = YOLO("4haziran.pt")
+            model = YOLO("models/4haziran.pt")
             labels = ["drusen", "normal"]
             arraySrc = np.array(self.image)
             srcH, srcW = arraySrc.shape[:2]

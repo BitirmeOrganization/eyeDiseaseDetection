@@ -6,7 +6,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 kamera = cv2.VideoCapture(1)
 confidence = 0.4
 
-model = YOLO("4haziran.pt")
+model = YOLO("models/4haziran.pt")
 labels = ['drusen', 'normal']
 
 while True:

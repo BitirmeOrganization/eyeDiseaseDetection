@@ -13,7 +13,7 @@ np.set_printoptions(suppress=True)
 model = tf.keras.models.load_model("keras_model.h5")
 
 # Load the labels
-class_names = open("labels.txt", "r").readlines()
+class_names = open("models/labels.txt", "r").readlines()
 
 # CAMERA can be 0 or 1 based on default camera of your computer
 camera = cv2.VideoCapture(1)
