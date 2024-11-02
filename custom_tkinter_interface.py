@@ -28,7 +28,7 @@ class MainInterface:
         self.titleText = ctk.CTkLabel(self.root,
                                       text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti", font=("Eurostile", 24, "bold"))
         self.titleText.pack(padx=10, pady=10)
-        self.authorText = ctk.CTkLabel(self.root, text="", font=custom_font)
+        self.authorText = ctk.CTkLabel(self.root, text=None, font=custom_font)
         self.authorText.pack()
 
         self.imgLabel = ctk.CTkLabel(root, text=None)
