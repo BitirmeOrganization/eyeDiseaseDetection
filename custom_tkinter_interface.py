@@ -18,13 +18,17 @@ class MainInterface:
         self.root = root
 
         # Properties of interface
-        self.root.title("Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti")
-        self.root.geometry("600x700")
+        self.root.title("visiondocAI")
+        self.root.geometry("700x800")
+
+        self.logo_image = CTkImage(Image.open("logo2.PNG"), size=(300, 50))  # Logoyu uygun boyutta yükleyin
+        self.logo_label = ctk.CTkLabel(self.root, image=self.logo_image, text=None)
+        self.logo_label.pack(pady=(20, 5))
 
         self.titleText = ctk.CTkLabel(self.root,
-                                      text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti", font=("Helvetica", 24, "bold"))
+                                      text="Göz Hastalıklarının Yapay Zeka ile Otomatik Tespiti", font=("Eurostile", 24, "bold"))
         self.titleText.pack(padx=10, pady=10)
-        self.authorText = ctk.CTkLabel(self.root, text="Dr. Öğr. Üyesi Burak Yılmaz\nMehmet Ali Güven - 211229014\nEren Güner - 211229049", font=custom_font)
+        self.authorText = ctk.CTkLabel(self.root, text="", font=custom_font)
         self.authorText.pack()
 
         self.imgLabel = ctk.CTkLabel(root, text=None)
