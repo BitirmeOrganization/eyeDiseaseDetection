@@ -37,8 +37,8 @@ class MainInterface:
         self.uploadImageBtn = ctk.CTkButton(root, text="Görsel Yükle", command=self.upload_image, font=custom_font)
         self.uploadImageBtn.pack(padx=10, pady=10)
 
-        self.detecBtn = ctk.CTkButton(root, text="Hastalık Tespiti Yap", command=self.detect_disease, font=custom_font)
-        self.detecBtn.pack(padx=10)
+        self.detectBtn = ctk.CTkButton(root, text="Hastalık Tespiti Yap", command=self.detect_disease, font=custom_font)
+        self.detectBtn.pack(padx=10, side="left")
 
         self.image = None
         self.warning_label = None
